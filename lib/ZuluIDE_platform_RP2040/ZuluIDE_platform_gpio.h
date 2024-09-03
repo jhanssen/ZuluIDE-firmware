@@ -60,8 +60,17 @@
 #define SDIO_D3  23
 
 // Expansion I2C bus
+#ifndef ENABLE_AUDIO_OUTPUT
+// IO expander I2C
 #define GPIO_I2C_SDA 26
 #define GPIO_I2C_SCL 27
+#else
+// IO expander I2C pins being used as SPI for audio
+#define AUDIO_SPI      spi1
+#define GPIO_EXP_SPARE 26
+#define GPIO_EXP_AUDIO 27
+#endif
+
 #define GPIO_EXT_INTERRUPT 15
 
 // GPIO Expansion bus pins IO0-IO7

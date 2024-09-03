@@ -57,8 +57,12 @@ X(ATAPI_CMD_READ_BUFFER                   , 0x3C) \
 X(ATAPI_CMD_READ_SUB_CHANNEL              , 0x42) \
 X(ATAPI_CMD_READ_TOC                      , 0x43) \
 X(ATAPI_CMD_READ_HEADER                   , 0x44) \
+X(ATAPI_CMD_PLAY_AUDIO10                  , 0x45) \
 X(ATAPI_CMD_GET_CONFIGURATION             , 0x46) \
+X(ATAPI_CMD_PLAY_AUDIO_MSF                , 0x47) \
 X(ATAPI_CMD_GET_EVENT_STATUS_NOTIFICATION , 0x4A) \
+X(ATAPI_CMD_PAUSE_RESUME                  , 0x4B) \
+X(ATAPI_CMD_STOP_PLAY_SCAN                , 0x4E) \
 X(ATAPI_CMD_READ_DISC_INFORMATION         , 0x51) \
 X(ATAPI_CMD_READ_TRACK_INFORMATION        , 0x52) \
 X(ATAPI_CMD_RESERVE_TRACK                 , 0x53) \
@@ -74,6 +78,7 @@ X(ATAPI_CMD_BLANK                         , 0xA1) \
 X(ATAPI_CMD_SECURITY_PROTOCOL_IN          , 0xA2) \
 X(ATAPI_CMD_SEND_KEY                      , 0xA3) \
 X(ATAPI_CMD_REPORT_KEY                    , 0xA4) \
+X(ATAPI_CMD_PLAY_AUDIO12                  , 0xA5) \
 X(ATAPI_CMD_LOAD_UNLOAD_MEDIUM            , 0xA6) \
 X(ATAPI_CMD_SET_READ_AHEAD                , 0xA7) \
 X(ATAPI_CMD_READ12                        , 0xA8) \

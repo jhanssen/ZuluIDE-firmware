@@ -188,6 +188,9 @@ protected:
     virtual bool atapi_read_capacity(const uint8_t *cmd);
     virtual bool atapi_read(const uint8_t *cmd);
     virtual bool atapi_write(const uint8_t *cmd);
+#ifdef ENABLE_AUDIO_OUTPUT
+    virtual bool atapi_play_audio_msf(const uint8_t *cmd);
+#endif
 
     // Read handlers
     virtual bool doRead(uint32_t lba, uint32_t transfer_len);

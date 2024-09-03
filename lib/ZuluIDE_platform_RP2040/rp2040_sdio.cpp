@@ -37,6 +37,10 @@
 #include <ZuluIDE_platform.h>
 #include <ZuluIDE_log.h>
 
+#ifdef ENABLE_AUDIO_OUTPUT
+#include <audio.h>
+#endif // ENABLE_AUDIO_OUTPUT
+
 #define SDIO_PIO pio1
 #define SDIO_CMD_SM 0
 #define SDIO_DATA_SM 1
@@ -643,7 +647,17 @@ sdio_status_t check_sdio_write_response(uint32_t card_response)
 // When a block finishes, this IRQ handler starts the next one
 static void rp2040_sdio_tx_irq()
 {
-    dma_hw->ints1 = 1 << SDIO_DMA_CHB;
+#ifndef ENABLE_AUDIO_OUTPUT
+    dma_hw->ints1 = (1 << SDIO_DMA_CHB);
+#else
+    // see audio.h for whats going on here
+    if (dma_hw->intr & (1 << SDIO_DMA_CHB)) {
+        dma_hw->ints1 = (1 << SDIO_DMA_CHB);
+    } else {
+        audio_dma_irq();
+        return;
+    }
+#endif
 
     if (g_sdio.transfer_state == SDIO_TX)
     {

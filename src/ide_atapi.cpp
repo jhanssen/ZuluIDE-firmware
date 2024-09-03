@@ -693,6 +693,9 @@ bool IDEATAPIDevice::handle_atapi_command(const uint8_t *cmd)
         case ATAPI_CMD_WRITE10:         return atapi_write(cmd);
         case ATAPI_CMD_WRITE12:         return atapi_write(cmd);
         case ATAPI_CMD_WRITE_AND_VERIFY10: return atapi_write(cmd);
+#ifdef ENABLE_AUDIO_OUTPUT
+        case ATAPI_CMD_PLAY_AUDIO_MSF:  return atapi_play_audio_msf(cmd);
+#endif
 
         default:
             logmsg("-- WARNING: Unsupported ATAPI command ", get_atapi_command_name(cmd[0]));
@@ -1225,6 +1228,13 @@ bool IDEATAPIDevice::doWrite(uint32_t lba, uint32_t transfer_len)
         return atapi_cmd_error(ATAPI_SENSE_MEDIUM_ERROR, 0);
     }
 }
+
+#ifdef ENABLE_AUDIO_OUTPUT
+bool IDEATAPIDevice::atapi_play_audio_msf(const uint8_t *cmd)
+{
+    return false;
+}
+#endif
 
 // Called by IDEImage to request reception of more data from IDE bus
 ssize_t IDEATAPIDevice::write_callback(uint8_t *data, size_t blocksize, size_t num_blocks, bool first_xfer, bool last_xfer)
